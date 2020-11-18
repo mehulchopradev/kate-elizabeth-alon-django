@@ -1,0 +1,33 @@
+{% extends 'libmgmt/layout.html' %}
+
+{% block 'title' %}
+    ::Libmgmt:: Register here!
+{% endblock %}
+
+{% block 'content' %}
+    <form action="{% url 'libapp:register' %}" method="POST">
+        {% csrf_token %}
+        <p>
+            <input type="text" name="username" placeholder="Enter username">
+        </p>
+        <p>
+            <input type="password" name="password" placeholder="Enter password">
+        </p>
+        <p>
+            Country:
+            <select name="country">
+                <option value="IN">India</option>
+                <option value="USA">United states of america</option>
+                <option value="AU">Australia</option>
+            </select>
+        </p>
+        <p>
+            Gender:
+            <input type="radio" name="gender" value="M">Male&nbsp;
+            <input type="radio" name="gender" value="F">Female
+        </p>
+        <p>
+            <button type="submit">Register</button>
+        </p>
+    </form>
+{% endblock %}

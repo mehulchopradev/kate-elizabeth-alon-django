@@ -1,0 +1,21 @@
+h2, div {
+    text-align: center;
+}
+
+div {
+    margin: 2rem;
+}
+
+div > a {
+    margin: 2rem;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.banner {
+    display: block;
+    width: 100%;
+}

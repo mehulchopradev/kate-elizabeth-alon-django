@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block 'title' %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'libmgmt/styles/app.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h2>Welcome to library management system</h2>
+        <img class="banner" src="{% static 'libmgmt/images/banner.jpeg' %}" alt="">
+    </div>
+    <div class="content">
+        {% block 'content' %}
+        {% endblock %}
+    </div>
+    <div class="footer">
+        Copyright 2020. All rights reserved
+    </div>
+</body>
+</html>

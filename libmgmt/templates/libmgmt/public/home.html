@@ -1,0 +1,21 @@
+{% extends 'libmgmt/layout.html' %}
+
+{% block 'title' %}
+    ::Libmgmt:: Welcome to my libary management application
+{% endblock %}
+
+{% block 'content' %}
+    <h3>{{greeting}}</h3>
+    <form action="">
+        <p>
+            <input type="text" placeholder="Enter username">
+        </p>
+        <p>
+            <input type="password" placeholder="Enter password">
+        </p>
+        <p>
+            <button type="submit">Login</button>
+        </p>
+    </form>
+    <a href="{% url 'libapp:signup' %}">New user ? Sign up</a>
+{% endblock %}
