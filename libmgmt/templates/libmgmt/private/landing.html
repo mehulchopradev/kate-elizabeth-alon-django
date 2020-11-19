@@ -1,0 +1,26 @@
+{% extends 'libmgmt/layout.html' %}
+
+{% block 'title' %}
+    ::Libmgmt:: Welcome user
+{% endblock %}
+
+{% block 'content' %}
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Price</td>
+                <td>Pages</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{book.title}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.pages}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

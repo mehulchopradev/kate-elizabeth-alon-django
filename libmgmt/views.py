@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse
 from datetime import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from .models import User
 
 # Create your views here.
 def show_home(request):
@@ -31,6 +32,16 @@ def register(request):
     gender = data['gender']
     # print(username, password, country, gender)
 
-    # TODO: store the data in a database
+    user = User(username=username, password=int(password), country=country, gender=gender)
+    user.save()
 
+    return HttpResponseRedirect(reverse('libapp:home'))
+
+def authenticate(request):
+    data = request.POST
+    username, password = data['username'], data['password']
+
+    users = User.objects.filter(username=username, password=password)
+    if users:
+        return HttpResponseRedirect(reverse('libapp:landing'))
     return HttpResponseRedirect(reverse('libapp:home'))

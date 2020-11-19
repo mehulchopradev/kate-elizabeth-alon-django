@@ -1,1 +1,11 @@
 lib/home/ - home page of the library management application
+
+ORM -> Object Relational Mapping
+
+
+Object(OOP)                          RDBMS(SQL)
+- class                             - table
+- class attributes                  - columns
+- objects                           - rows (tuples)
+
+Django Model layer -> ORM
