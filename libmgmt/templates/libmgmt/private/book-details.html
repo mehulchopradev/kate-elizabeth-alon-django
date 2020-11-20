@@ -1,0 +1,44 @@
+{% extends 'libmgmt/layout.html' %}
+
+{% block 'title' %}
+    ::Libmgmt:: Book details
+{% endblock %}
+
+{% block 'content' %}
+    Welcome {{username}}
+    <a href="{% url 'libapp:logout' %}">Logout</a>
+    <h1>{{book.title}}</h1>
+    <div>
+        <i>Price: </i><span>{{book.price}}</span>|
+        <i>Pages: </i><span>{{book.pages}}</span>
+    </div>
+    <div>
+        <p>
+            Published date: <i>{{book.published_date}}</i>
+        </p>
+        <p>
+            No of copies: <i>{{book.no_of_copies}}</i>
+        </p>
+    </div>
+    <h2>Publication house details</h2>
+    <div>
+        <i>Publication House Name:</i><span>{{book.publication_house.name}}</span>|
+        <i>Ratings: </i><span>{{book.publication_house.ratings}}</span>
+    </div>
+    <h2>Reviews</h2>
+    {% if book.review_set.all %}
+        {% for review in book.review_set.all %}
+            <div>
+                <p>
+                    {{review.personality_name}}
+                </p>
+                <p>
+                    {{review.description}}
+                </p>
+            </div>
+            ------------------------------------------
+        {% endfor %}
+    {% else %}
+            No reviews yet
+    {% endif %}
+{% endblock %}

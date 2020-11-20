@@ -43,5 +43,9 @@ def authenticate(request):
 
     users = User.objects.filter(username=username, password=password)
     if users:
+        # get a new session from this request
+        session = request.session
+        session['username'] = username
+
         return HttpResponseRedirect(reverse('libapp:landing'))
     return HttpResponseRedirect(reverse('libapp:home'))

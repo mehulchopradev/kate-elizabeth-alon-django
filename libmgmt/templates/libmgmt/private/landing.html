@@ -5,12 +5,15 @@
 {% endblock %}
 
 {% block 'content' %}
+    Welcome {{username}}
+    <a href="{% url 'libapp:logout' %}">Logout</a>
     <table border="1">
         <thead>
             <tr>
                 <td>Title</td>
                 <td>Price</td>
                 <td>Pages</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +22,9 @@
                     <td>{{book.title}}</td>
                     <td>{{book.price}}</td>
                     <td>{{book.pages}}</td>
+                    <td>
+                        <a href="{% url 'libapp:bookDetails' book.id %}">Details</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
