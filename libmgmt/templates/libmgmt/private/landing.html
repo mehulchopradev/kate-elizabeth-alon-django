@@ -14,6 +14,7 @@
                 <td>Price</td>
                 <td>Pages</td>
                 <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,15 @@
                     <td>{{book.pages}}</td>
                     <td>
                         <a href="{% url 'libapp:bookDetails' book.id %}">Details</a>
+                    </td>
+                    <td>
+                        {% if not book.issueable %}
+                            Cannot Issue
+                        {% elif book.can_issue %}
+                            <a href="{% url 'libapp:issueBook' book.id %}">Issue book</a>
+                        {% else %}
+                            <a href="{% url 'libapp:returnBook' book.id %}">Return book</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

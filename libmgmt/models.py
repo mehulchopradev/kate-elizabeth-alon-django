@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class User(models.Model):
@@ -10,6 +11,10 @@ class User(models.Model):
 
 # 1 publication house can publish many books
 # 1 book can be published only by 1 publication house
+
+# Many to Many
+# 1 logged in user can issue many books (1 to *)
+# 1 book can be issued to more than one logged in user (1 to *)
 
 class PublicationHouse(models.Model):
     # id
@@ -33,6 +38,7 @@ class Book(models.Model):
     no_of_copies = models.IntegerField(null=False, blank=False)
 
     publication_house = models.ForeignKey(PublicationHouse, on_delete=models.CASCADE)
+    users = models.ManyToManyField(User, through='BooksIssued')
 
     # review_set
 
@@ -45,3 +51,9 @@ class Review(models.Model):
     description = models.CharField(null=False, blank=False, max_length=50)
 
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+class BooksIssued(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    issue_date = models.DateField(null=False, default=date.today())
+    return_date = models.DateField(null=True)

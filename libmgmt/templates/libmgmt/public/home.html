@@ -8,12 +8,13 @@
     <h3>{{greeting}}</h3>
     <form action="{% url 'libapp:auth' %}" method="POST">
         {% csrf_token %}
-        <p>
+        {{form.as_p}}
+        <!-- <p>
             <input type="text" name="username" placeholder="Enter username">
         </p>
         <p>
             <input type="password" name="password" placeholder="Enter password">
-        </p>
+        </p> -->
         <p>
             <button type="submit">Login</button>
         </p>
