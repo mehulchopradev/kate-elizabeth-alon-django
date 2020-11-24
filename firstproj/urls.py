@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import hello, home, aboutus, contactus
+from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import hello, contactus
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', hello),
-    path('home/', home, name='home'),
-    path('about-us/', aboutus, name='about'),
+    path('home/', TemplateView.as_view(template_name="home.html"), name='home'),
+    path('about-us/', TemplateView.as_view(template_name="aboutus.html"), name='about'),
     path('contact-us/', contactus, name='contact'),
     path('lib/', include('libmgmt.urls')) # include the non root app urls and mount it in the root app urls
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

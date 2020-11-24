@@ -4,12 +4,12 @@ from django.shortcuts import render
 def hello(request):
     return HttpResponse('Hello World')
 
-def home(request):
+''' def home(request):
     # return HttpResponse('<html><body><h2>Welcome to my app</h2></body></html>')
-    return render(request, 'home.html')
+    return render(request, 'home.html') '''
 
-def aboutus(request):
-    return render(request, 'aboutus.html')
+''' def aboutus(request):
+    return render(request, 'aboutus.html') '''
 
 def contactus(request):
     # Imagine that the contact email and phone is coming from the database

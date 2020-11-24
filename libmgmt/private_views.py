@@ -8,6 +8,7 @@ def show_landing(request):
     if 'username' not in session:
         return HttpResponseRedirect(reverse('libapp:home'))
     username = session['username']
+    profile_pic_url = session['profile_pic_url']
     user = User.objects.get(username=username)
 
     books = Book.objects.order_by('-pages')
@@ -29,6 +30,7 @@ def show_landing(request):
     data = {
         'books': books,
         'username': username,
+        'profile_pic_url': profile_pic_url
     }
     return render(request, 'libmgmt/private/landing.html', data)
 

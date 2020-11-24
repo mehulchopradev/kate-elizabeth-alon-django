@@ -1,8 +1,9 @@
 from django.shortcuts import render, reverse
 from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
+from django.views.generic.edit import FormView
 from .models import User
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 
 # Create your views here.
 def show_home(request):
@@ -82,10 +83,26 @@ def login(request):
             users = User.objects.filter(**login_data)
             if users:
                 # get a new session from this request
+                user = users[0]
                 session = request.session
                 session['username'] = login_data['username']
+                session['profile_pic_url'] = user.profile_pic.url
 
                 return HttpResponseRedirect(reverse('libapp:landing'))
 
     data['form'] = login_form
     return render(request, 'libmgmt/public/home.html', data)
+
+class RegisterView(FormView):
+    template_name = 'libmgmt/public/register.html'
+    form_class = RegisterForm
+    # It will render register.html with the RegisterForm instance passed as `form` attribute in the data
+
+    def form_valid(self, form):
+        ''' register_data = form.cleaned_data
+        user = User(**register_data)
+        user.save() '''
+
+        form.save()
+
+        return HttpResponseRedirect(reverse('libapp:home'))

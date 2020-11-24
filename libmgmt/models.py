@@ -1,6 +1,9 @@
 from django.db import models
 from datetime import date
 
+def handle_profile_pic_upload(user, file_name):
+    return 'profile_pics/{0}_{1}'.format(user.username, file_name)
+
 # Create your models here.
 class User(models.Model):
     # id
@@ -8,6 +11,7 @@ class User(models.Model):
     password = models.IntegerField(null=False, blank=False)
     gender = models.CharField(null=False, blank=False, max_length=1)
     country = models.CharField(null=True, blank=True, max_length=5)
+    profile_pic = models.ImageField(null=True, blank=True, upload_to=handle_profile_pic_upload)
 
 # 1 publication house can publish many books
 # 1 book can be published only by 1 publication house
